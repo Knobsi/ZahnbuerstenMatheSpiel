@@ -33,6 +33,8 @@ public class Multiplizieren : MonoBehaviour
 
     public int bakterienzahl = 4;
 
+    public GameObject zahnbürste;
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +83,7 @@ public class Multiplizieren : MonoBehaviour
         //Zeigt das das level geschaft ist
         if (levelfinish == 4)
         {
-
+            zahnbürste.SetActive(true);
             PlayerPrefs.SetInt("ErdeSauber", 1);
             PlayerPrefs.Save();
             planetClean.SetActive(true);
@@ -90,7 +92,7 @@ public class Multiplizieren : MonoBehaviour
         }
         else
         {
-
+            zahnbürste.SetActive(false);
             planetDirty.SetActive(true);
             planetClean.SetActive(false);
 
@@ -121,7 +123,7 @@ public class Multiplizieren : MonoBehaviour
                 bakterie1.SetActive(true);
                 bakterie2.SetActive(true);
                 bakterie3.SetActive(true);
-                bakterie4.SetActive(true);
+                bakterie4.SetActive(false);
                 break;
             case 4:
                 bakterie1.SetActive(true);
@@ -186,6 +188,7 @@ public class Multiplizieren : MonoBehaviour
             Debug.Log("Geilman");
             NewNumbers();
             levelfinish++;
+            bakterienzahl--;
 
         }
         if (summe1 != summe)
@@ -195,6 +198,7 @@ public class Multiplizieren : MonoBehaviour
             NewNumbers();
             levelfinish = 0;
             inputText.gameObject.GetComponent<InputField>().text = "Falsch";
+            bakterienzahl = 4;
         }
 
     }
@@ -207,6 +211,7 @@ public class Multiplizieren : MonoBehaviour
             PlayerPrefs.SetInt("ErdeSauber", 1);
             PlayerPrefs.Save();
             SceneManager.LoadScene("Hauptmenü");
+            bakterienzahl = 0;
 
         }
 

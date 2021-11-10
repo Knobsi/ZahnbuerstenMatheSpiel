@@ -32,6 +32,8 @@ public class Addiren : MonoBehaviour
     public GameObject bakterie4;
 
     public int bakterienzahl = 4;
+
+    public GameObject zahnbürste;
     
 
     // Start is called before the first frame update
@@ -81,7 +83,7 @@ public class Addiren : MonoBehaviour
         //Zeigt das das level geschaft ist
         if(levelfinish == 4)
         {
-
+            zahnbürste.SetActive(true);
             PlayerPrefs.SetInt("merkurSauber", 1);
             PlayerPrefs.Save();
             planetClean.SetActive(true);
@@ -90,7 +92,7 @@ public class Addiren : MonoBehaviour
         }
         else
         {
-
+            zahnbürste.SetActive(false);
             planetDirty.SetActive(true);
             planetClean.SetActive(false);
 
@@ -121,7 +123,7 @@ public class Addiren : MonoBehaviour
                 bakterie1.SetActive(true);
                 bakterie2.SetActive(true);
                 bakterie3.SetActive(true);
-                bakterie4.SetActive(true);
+                bakterie4.SetActive(false);
                 break;
             case 4:
                 bakterie1.SetActive(true);

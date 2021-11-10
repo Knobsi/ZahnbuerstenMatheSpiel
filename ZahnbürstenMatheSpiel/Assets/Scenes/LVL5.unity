@@ -386,6 +386,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143171200}
   m_CullTransparentMesh: 1
+--- !u!1 &209310636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2742581113433162679, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+  m_PrefabInstance: {fileID: 2742581113361322011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &235441877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,6 +1571,7 @@ MonoBehaviour:
   bakterie3: {fileID: 2128000350}
   bakterie4: {fileID: 364526075}
   bakterienzahl: 4
+  "zahnb\xFCrste": {fileID: 209310636}
 --- !u!4 &1655894636
 Transform:
   m_ObjectHideFlags: 0
@@ -1975,3 +1981,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2742581113361322011
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162676, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742581113433162679, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
+      propertyPath: m_Name
+      value: "Zahnb\xFCrste"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89f64d352d95c3b41bf7e0a20a9b361e, type: 3}
