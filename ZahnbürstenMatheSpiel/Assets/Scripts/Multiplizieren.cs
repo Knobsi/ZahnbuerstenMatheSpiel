@@ -34,7 +34,38 @@ public class Multiplizieren : MonoBehaviour
     public int bakterienzahl = 4;
 
     public GameObject zahnbürste;
+    public GameObject lamp;
 
+    int lvlIsFinish;
+
+    private void Awake()
+    {
+
+        lvlIsFinish = PlayerPrefs.GetInt("lvlIsFinishErde");
+
+        if (levelfinish == 4 || lvlIsFinish == 1)
+        {
+            zahnbürste.SetActive(true);
+            lamp.SetActive(true);
+            PlayerPrefs.SetInt("ErdeSauber", 1);
+            PlayerPrefs.SetInt("lvlIsFinishErde", 1);
+            PlayerPrefs.Save();
+            planetClean.SetActive(true);
+            planetDirty.SetActive(false);
+
+        }
+        else
+        {
+            zahnbürste.SetActive(false);
+            planetDirty.SetActive(true);
+            planetClean.SetActive(false);
+            PlayerPrefs.SetInt("ErdeSauber", 0);
+            PlayerPrefs.SetInt("lvlIsFinishErde", 0);
+            PlayerPrefs.Save();
+
+        }
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -81,9 +112,11 @@ public class Multiplizieren : MonoBehaviour
 
         }
         //Zeigt das das level geschaft ist
-        if (levelfinish == 4)
+        if (levelfinish == 4 || lvlIsFinish == 1)
         {
             zahnbürste.SetActive(true);
+            lamp.SetActive(true);
+            PlayerPrefs.SetInt("lvlIsFinishErde", 1);
             PlayerPrefs.SetInt("ErdeSauber", 1);
             PlayerPrefs.Save();
             planetClean.SetActive(true);
@@ -92,45 +125,59 @@ public class Multiplizieren : MonoBehaviour
         }
         else
         {
+            PlayerPrefs.SetInt("ErdeSauber", 0); 
+            PlayerPrefs.SetInt("lvlIsFinishErde", 0);
+            PlayerPrefs.Save();
             zahnbürste.SetActive(false);
+            lamp.SetActive(false);
             planetDirty.SetActive(true);
             planetClean.SetActive(false);
 
         }
         Debug.Log(levelfinish);
 
-        switch (bakterienzahl)
+        if (lvlIsFinish == 1)
         {
-            case 0:
-                bakterie1.SetActive(false);
-                bakterie2.SetActive(false);
-                bakterie3.SetActive(false);
-                bakterie4.SetActive(false);
-                break;
-            case 1:
-                bakterie1.SetActive(true);
-                bakterie2.SetActive(false);
-                bakterie3.SetActive(false);
-                bakterie4.SetActive(false);
-                break;
-            case 2:
-                bakterie1.SetActive(true);
-                bakterie2.SetActive(true);
-                bakterie3.SetActive(false);
-                bakterie4.SetActive(false);
-                break;
-            case 3:
-                bakterie1.SetActive(true);
-                bakterie2.SetActive(true);
-                bakterie3.SetActive(true);
-                bakterie4.SetActive(false);
-                break;
-            case 4:
-                bakterie1.SetActive(true);
-                bakterie2.SetActive(true);
-                bakterie3.SetActive(true);
-                bakterie4.SetActive(true);
-                break;
+            bakterie1.SetActive(false);
+            bakterie2.SetActive(false);
+            bakterie3.SetActive(false);
+            bakterie4.SetActive(false);
+        }
+        else
+        {
+            switch (bakterienzahl)
+            {
+                case 0:
+                    bakterie1.SetActive(false);
+                    bakterie2.SetActive(false);
+                    bakterie3.SetActive(false);
+                    bakterie4.SetActive(false);
+                    break;
+                case 1:
+                    bakterie1.SetActive(true);
+                    bakterie2.SetActive(false);
+                    bakterie3.SetActive(false);
+                    bakterie4.SetActive(false);
+                    break;
+                case 2:
+                    bakterie1.SetActive(true);
+                    bakterie2.SetActive(true);
+                    bakterie3.SetActive(false);
+                    bakterie4.SetActive(false);
+                    break;
+                case 3:
+                    bakterie1.SetActive(true);
+                    bakterie2.SetActive(true);
+                    bakterie3.SetActive(true);
+                    bakterie4.SetActive(false);
+                    break;
+                case 4:
+                    bakterie1.SetActive(true);
+                    bakterie2.SetActive(true);
+                    bakterie3.SetActive(true);
+                    bakterie4.SetActive(true);
+                    break;
+            }
         }
     }
 
@@ -142,23 +189,23 @@ public class Multiplizieren : MonoBehaviour
         switch (addirenDifficulty)
         {
             case 1:
-                zahl1 = UnityEngine.Random.Range(0, 10);
-                zahl2 = UnityEngine.Random.Range(0, 10);
+                zahl1 = UnityEngine.Random.Range(1, 11);
+                zahl2 = UnityEngine.Random.Range(1, 11);
                 break;
 
             case 2:
-                zahl1 = UnityEngine.Random.Range(0, 50);
-                zahl2 = UnityEngine.Random.Range(0, 50);
+                zahl1 = UnityEngine.Random.Range(1, 51);
+                zahl2 = UnityEngine.Random.Range(1, 51);
                 break;
 
             case 3:
-                zahl1 = UnityEngine.Random.Range(0, 100);
-                zahl2 = UnityEngine.Random.Range(0, 100);
+                zahl1 = UnityEngine.Random.Range(1, 101);
+                zahl2 = UnityEngine.Random.Range(1, 101);
                 break;
 
             case 4:
-                zahl1 = UnityEngine.Random.Range(0, 1000);
-                zahl2 = UnityEngine.Random.Range(0, 1000);
+                zahl1 = UnityEngine.Random.Range(1, 1001);
+                zahl2 = UnityEngine.Random.Range(1, 1001);
                 break;
 
 
@@ -188,6 +235,7 @@ public class Multiplizieren : MonoBehaviour
             Debug.Log("Geilman");
             NewNumbers();
             levelfinish++;
+            inputText.gameObject.GetComponent<InputField>().text = "";
             bakterienzahl--;
 
         }
@@ -206,7 +254,7 @@ public class Multiplizieren : MonoBehaviour
     void CheckEnd()
     {
 
-        if (levelfinish == 4)
+        if (levelfinish == 4 || lvlIsFinish == 1)
         {
             PlayerPrefs.SetInt("ErdeSauber", 1);
             PlayerPrefs.Save();
