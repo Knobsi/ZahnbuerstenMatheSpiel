@@ -83,7 +83,7 @@ public class Addiren : MonoBehaviour
         weiter.onClick.AddListener(CheckEnd);
 
         //Checkt die Schwierigkeit
-        addirenDifficulty = 1;
+        addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
 
         //Levelselector zugriff
 

@@ -43,6 +43,9 @@ public class MischAufgaben : MonoBehaviour
 
     int lvlIsFinish;
 
+    int zahlUnterNull;
+    int kommazahlenErlaubt;
+
     private void Awake()
     {
         
@@ -70,7 +73,8 @@ public class MischAufgaben : MonoBehaviour
 
         }
 
-        
+        zahlUnterNull = PlayerPrefs.GetInt("zahlUnterNull");
+        kommazahlenErlaubt = PlayerPrefs.GetInt("kommazahlenErlaubt");
 
     }
 
@@ -89,7 +93,7 @@ public class MischAufgaben : MonoBehaviour
         weiter.onClick.AddListener(CheckEnd);
 
         //Checkt die Schwierigkeit
-        addirenDifficulty = 1;
+        addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
 
         
 
@@ -229,13 +233,17 @@ public class MischAufgaben : MonoBehaviour
             case 2:
                 zahlText = "-";
 
-                if ((zahl1 - zahl2) <= 0)
+                if(zahlUnterNull == 1)
                 {
 
-                    NewNumbers();
+                    if ((zahl1 - zahl2) <= 0)
+                    {
+
+                        NewNumbers();
+
+                    }
 
                 }
-
                 break;
             case 3:
                 zahlText = "*";
@@ -243,11 +251,15 @@ public class MischAufgaben : MonoBehaviour
             case 4:
                 zahlText = "/";
 
-                if((zahl1 % zahl2)!=0)
+                if(kommazahlenErlaubt == 0)
                 {
-                    NewNumbers();
-                }
 
+                    if ((zahl1 % zahl2) != 0)
+                    {
+                        NewNumbers();
+                    }
+
+                }
                 break;
 
         }

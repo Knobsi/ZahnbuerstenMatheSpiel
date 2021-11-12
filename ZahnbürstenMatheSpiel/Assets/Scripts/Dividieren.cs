@@ -37,6 +37,7 @@ public class Dividieren : MonoBehaviour
     public GameObject lamp;
 
     int lvlIsFinish;
+    int kommazahlenErlaubt;
 
     private void Awake()
     {
@@ -65,7 +66,7 @@ public class Dividieren : MonoBehaviour
 
         }
 
-       
+        kommazahlenErlaubt = PlayerPrefs.GetInt("kommazahlenErlaubt");
 
     }
 
@@ -84,7 +85,7 @@ public class Dividieren : MonoBehaviour
         weiter.onClick.AddListener(CheckEnd);
 
         //Checkt die Schwierigkeit
-        addirenDifficulty = 1;
+        addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
 
         //Levelselector zugriff
 
@@ -212,11 +213,16 @@ public class Dividieren : MonoBehaviour
 
 
         }
-
-        if ((zahl1 % zahl2) != 0)
+        if(kommazahlenErlaubt == 0)
         {
-            NewNumbers();
+
+            if ((zahl1 % zahl2) != 0)
+            {
+                NewNumbers();
+            }
+
         }
+       
 
         //Gibt die nummer in den Textzeilen aus
         string zahl1Text = Convert.ToString(zahl1);

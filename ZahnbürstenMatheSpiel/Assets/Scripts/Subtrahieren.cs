@@ -38,6 +38,8 @@ public GameObject planetDirty;
 
     int lvlIsFinish;
 
+    public int zahlUnterNull;
+
     private void Awake()
     {
       
@@ -63,6 +65,8 @@ public GameObject planetDirty;
 
         }
 
+        zahlUnterNull = PlayerPrefs.GetInt("zahlUnterNull");
+
     }
 
     // Start is called before the first frame update
@@ -80,7 +84,7 @@ public GameObject planetDirty;
     weiter.onClick.AddListener(CheckEnd);
 
     //Checkt die Schwierigkeit
-    addirenDifficulty = 1;
+    addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
 
     //Levelselector zugriff
 
@@ -208,12 +212,17 @@ void NewNumbers()
 
 
         }
-        if ((zahl1 - zahl2) <= 0)
+        if(zahlUnterNull == 1)
         {
+            if ((zahl1 - zahl2) <= 0)
+            {
 
-            NewNumbers();
+                NewNumbers();
 
+            }
         }
+        
+       
 
     //Gibt die nummer in den Textzeilen aus
     string zahl1Text = Convert.ToString(zahl1);
