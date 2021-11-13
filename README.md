@@ -11,6 +11,7 @@ um die zähne der planeten zu putzen dies schaft man es dem man verschiedene mat
  zahlen mit/ohne kommastelle
  Difficulty 
  Ton
+ Texte
  ```
  
  -Animationen
@@ -24,8 +25,6 @@ um die zähne der planeten zu putzen dies schaft man es dem man verschiedene mat
  
  # **Was noch implementiert werden soll**
  
- -Eingegebenen namen speichern und in den Texten erwähnen
- <br>
- -Texte
+ -Eingegebenen namen speichern und auswahl erstellen auf verschiedenen speicherständen und in den Texten erwähnen
  <br>
  -...
