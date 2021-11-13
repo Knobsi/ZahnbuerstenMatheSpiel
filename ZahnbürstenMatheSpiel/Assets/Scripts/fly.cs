@@ -10,6 +10,7 @@ public class fly : MonoBehaviour
     public Button yourButton;
 
     public bool nowStart;
+    public
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class fly : MonoBehaviour
         {
 
             Vector2 flyNow = new Vector2(1, 0);
-            this.gameObject.transform.Translate(flyNow * Time.deltaTime);
+            this.gameObject.transform.Translate(flyNow * Time.deltaTime * 3);
 
         }
         
@@ -40,7 +41,7 @@ public class fly : MonoBehaviour
     {
 
         nowStart = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(lvlToLoad);
 
 
