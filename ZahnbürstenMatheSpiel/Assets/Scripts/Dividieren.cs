@@ -10,8 +10,8 @@ public class Dividieren : MonoBehaviour
     public LevelSelector levelSelector;
 
     public int addirenDifficulty;
-    int zahl1;
-    int zahl2;
+    decimal zahl1;
+    decimal zahl2;
     bool nedNewNumber;
 
     public Button testButton;
@@ -238,11 +238,12 @@ public class Dividieren : MonoBehaviour
     void CheckSumme()
     {
         //Rechnet den Betrag aus
-        int summe = zahl1 / zahl2;
+        decimal summe = zahl1 / zahl2;
+        summe = Math.Round(summe, 2);
 
         string text = inputText.gameObject.GetComponent<InputField>().text;
-        int summe1 = Convert.ToInt32(text);
-
+        decimal summe1 = Convert.ToDecimal(text);
+        summe1 = Math.Round(summe1, 2);
         //Checkt das ergebnis was eingegeben wurde
         if (summe1 == summe)
         {

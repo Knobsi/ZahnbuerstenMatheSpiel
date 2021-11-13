@@ -10,8 +10,8 @@ public class MischAufgaben : MonoBehaviour
    
 
     public int addirenDifficulty;
-    int zahl1;
-    int zahl2;
+    double zahl1;
+    double zahl2;
     bool nedNewNumber;
 
     public Button testButton;
@@ -29,7 +29,7 @@ public class MischAufgaben : MonoBehaviour
     int Randomizer;
     string zahlText;
 
-    int summe;
+    double summe;
 
     public GameObject bakterie1;
     public GameObject bakterie2;
@@ -94,16 +94,6 @@ public class MischAufgaben : MonoBehaviour
 
         //Checkt die Schwierigkeit
         addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
-
-        
-
-        
-
-        GameObject.Find("Merkur").SetActive(false);
-        GameObject.Find("Venus").SetActive(false);
-        GameObject.Find("Erde").SetActive(false);
-        GameObject.Find("Mars").SetActive(false);
-        GameObject.Find("Jupiter").SetActive(false);
 
     }
 
@@ -294,6 +284,7 @@ public class MischAufgaben : MonoBehaviour
                 break;
             case 4:
                 summe = zahl1 / zahl2;
+                summe = Math.Round(summe, 2);
                 break;
 
         }
@@ -301,8 +292,8 @@ public class MischAufgaben : MonoBehaviour
 
 
         string text = inputText.gameObject.GetComponent<InputField>().text;
-        int summe1 = Convert.ToInt32(text);
-
+        double summe1 = Convert.ToDouble(text);
+        summe1 = Math.Round(summe1, 2);
         //Checkt das ergebnis was eingegeben wurde
         if (summe1 == summe)
         {

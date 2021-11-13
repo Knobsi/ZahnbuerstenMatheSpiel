@@ -24,8 +24,64 @@ public class OptionsManager : MonoBehaviour
     public Text kommaZahlenText;
     public Text difficultyText;
     public Text muteText;
-    
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        // Deklaration und Initialisirung der switch werte
+        switchKommaZahlen = PlayerPrefs.GetInt("kommazahlenErlaubt");
+        switchDifficulty = PlayerPrefs.GetInt("Difficulty");
+        switchMute = PlayerPrefs.GetInt("mute");
+        switchZahlUnterNull = PlayerPrefs.GetInt("zahlUnterNull");
+        PlayerPrefs.Save();
+
+        // Definirt die Texte im Options Bereich
+        if (switchZahlUnterNull == 0)
+        {
+            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können unter Null fallsen";
+        }
+        else if (switchZahlUnterNull == 1)
+        {
+            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können nicht unter Null fallsen";
+        }
+
+        if (switchKommaZahlen == 1)
+        {
+            kommaZahlenText.gameObject.GetComponent<Text>().text = "Ergebnisse können kommazahlen enthalten";
+        }
+        else if (switchKommaZahlen == 0)
+        {
+            kommaZahlenText.gameObject.GetComponent<Text>().text = "Ergebnisse können keine kommazahlen enthalten";
+        }
+
+        switch (switchDifficulty)
+        {
+            case 2:
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist easy Zahlen von 1 - 50";
+                break;
+            case 3:
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist medium Zahlen von 1 - 100";
+                break;
+            case 4:
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist hard Zahlen von 1 - 1000";
+                break;
+            case 1:
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Extrem Zahlen von 1 - 10";
+                break;
+            default:
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist easy Zahlen von 1 - 10";
+                break;
+        }
+
+        if (switchMute == 0)
+        {
+            muteText.gameObject.GetComponent<Text>().text = "Musik ist aus";
+        }
+        else if (switchMute == 1)
+        {
+            muteText.gameObject.GetComponent<Text>().text = "Musik ist an";
+        }
+    }
+
     void Start()
     {
         Button btn1 = zahlUnterNullButton.GetComponent<Button>();
@@ -42,8 +98,6 @@ public class OptionsManager : MonoBehaviour
 
     }
 
-    
-
     void SwitchZahlUnterNull()
     {
         switchZahlUnterNull = PlayerPrefs.GetInt("zahlUnterNull");
@@ -51,20 +105,15 @@ public class OptionsManager : MonoBehaviour
         if(switchZahlUnterNull == 1)
         {
             zahlUnterNull = 0;
-            zahlUnterNullText.gameObject.GetComponent<Text>().text = "An";
+            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können unter Null fallsen";
         }
         else if(switchZahlUnterNull == 0)
         {
             zahlUnterNull = 1;
-            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Aus";
+            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können nicht unter Null fallsen";
         }
-        else
-        {
-            zahlUnterNull = 0;
-            zahlUnterNullText.gameObject.GetComponent<Text>().text = "An";
-        }
-
-            PlayerPrefs.SetInt("zahlUnterNull", zahlUnterNull);
+        
+        PlayerPrefs.SetInt("zahlUnterNull", zahlUnterNull);
         PlayerPrefs.Save();
     }
 
@@ -72,21 +121,17 @@ public class OptionsManager : MonoBehaviour
     {
         switchKommaZahlen = PlayerPrefs.GetInt("kommazahlenErlaubt");
 
-        if(switchKommaZahlen == 1)
-        {
-            kommaZahlen = 0;
-            kommaZahlenText.gameObject.GetComponent<Text>().text = "An";
-        }
-        else if (switchKommaZahlen == 0)
+        if(switchKommaZahlen == 0)
         {
             kommaZahlen = 1;
-            kommaZahlenText.gameObject.GetComponent<Text>().text = "Aus";
+            kommaZahlenText.gameObject.GetComponent<Text>().text = "Ergebnisse können kommazahlen enthalten";
         }
-        else 
+        else if (switchKommaZahlen == 1)
         {
             kommaZahlen = 0;
-            kommaZahlenText.gameObject.GetComponent<Text>().text = "An";
+            kommaZahlenText.gameObject.GetComponent<Text>().text = "Ergebnisse können keine kommazahlen enthalten";
         }
+      
         PlayerPrefs.SetInt("kommazahlenErlaubt", kommaZahlen);
         PlayerPrefs.Save();
     }
@@ -99,23 +144,23 @@ public class OptionsManager : MonoBehaviour
         {
             case 1:
                 Difficulty = 2;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty easy Zahlen von 1 - 10"; 
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist easy Zahlen von 1 - 50"; 
                 break;
             case 2:
                 Difficulty = 3;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty easy Zahlen von 1 - 50";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist medium Zahlen von 1 - 100";
                 break;
             case 3:
                 Difficulty = 4;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty easy Zahlen von 1 - 100";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist hard Zahlen von 1 - 1000";
                 break;
             case 4:
                 Difficulty = 1;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty easy Zahlen von 1 - 1000";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Extrem Zahlen von 1 - 10";
                 break;
             default:
                 Difficulty = 1;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty easy Zahlen von 1 - 10";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist easy Zahlen von 1 - 10";
                 break;
 
         }
@@ -131,17 +176,12 @@ public class OptionsManager : MonoBehaviour
         if(switchMute == 1)
         {
             mute = 0;
-            muteText.gameObject.GetComponent<Text>().text = "An";
+            muteText.gameObject.GetComponent<Text>().text = "Musik ist aus";
         }
         else if(switchMute == 0)
         {
             mute = 1;
-            muteText.gameObject.GetComponent<Text>().text = "Aus";
-        }
-        else
-        {
-            mute = 0;
-            muteText.gameObject.GetComponent<Text>().text = "An";
+            muteText.gameObject.GetComponent<Text>().text = "Musik ist an";
         }
 
         PlayerPrefs.SetInt("mute", mute);
