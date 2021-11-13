@@ -44,7 +44,7 @@ public class Dividieren : MonoBehaviour
      
         lvlIsFinish = PlayerPrefs.GetInt("lvlIsFinishMars");
 
-        if (levelfinish == 4 || levelfinish == 1)
+        if (levelfinish == 4 || lvlIsFinish == 1)
         {
             zahnbürste.SetActive(true);
             lamp.SetActive(true);

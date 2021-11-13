@@ -85,15 +85,7 @@ public class Addiren : MonoBehaviour
         //Checkt die Schwierigkeit
         addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
 
-        //Levelselector zugriff
-
-        levelSelector = GameObject.Find("PlanetenController").GetComponentInParent<LevelSelector>() ;
-
-        GameObject.Find("Merkur").SetActive(false);
-        GameObject.Find("Venus").SetActive(false);
-        GameObject.Find("Erde").SetActive(false);
-        GameObject.Find("Mars").SetActive(false);
-        GameObject.Find("Jupiter").SetActive(false);
+       
 
        
 
@@ -135,7 +127,7 @@ public class Addiren : MonoBehaviour
             PlayerPrefs.SetInt("lvlIsFinishMerkur", 0);
 
         }
-        Debug.Log(levelfinish);
+        
         if (lvlIsFinish == 1)
         {
             bakterie1.SetActive(false);
