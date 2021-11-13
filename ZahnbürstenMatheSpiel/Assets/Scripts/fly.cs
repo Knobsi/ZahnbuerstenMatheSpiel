@@ -10,7 +10,7 @@ public class fly : MonoBehaviour
     public Button yourButton;
 
     public bool nowStart;
-    public
+    public GameObject paste;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class fly : MonoBehaviour
         {
 
             Vector2 flyNow = new Vector2(1, 0);
-            this.gameObject.transform.Translate(flyNow * Time.deltaTime * 3);
+            paste.gameObject.transform.Translate(flyNow * Time.deltaTime * 3);
 
         }
         

@@ -105,12 +105,12 @@ public class OptionsManager : MonoBehaviour
         if(switchZahlUnterNull == 1)
         {
             zahlUnterNull = 0;
-            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können unter Null fallsen";
+            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können unter Null fallen";
         }
         else if(switchZahlUnterNull == 0)
         {
             zahlUnterNull = 1;
-            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können nicht unter Null fallsen";
+            zahlUnterNullText.gameObject.GetComponent<Text>().text = "Ergebnisse können nicht unter Null fallen";
         }
         
         PlayerPrefs.SetInt("zahlUnterNull", zahlUnterNull);
@@ -144,23 +144,23 @@ public class OptionsManager : MonoBehaviour
         {
             case 1:
                 Difficulty = 2;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist easy Zahlen von 1 - 50"; 
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist medium Zahlen von 1 - 50"; 
                 break;
             case 2:
                 Difficulty = 3;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist medium Zahlen von 1 - 100";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Hard Zahlen von 1 - 100";
                 break;
             case 3:
                 Difficulty = 4;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist hard Zahlen von 1 - 1000";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Extrem Zahlen von 1 - 1000";
                 break;
             case 4:
                 Difficulty = 1;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Extrem Zahlen von 1 - 10";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Easy Zahlen von 1 - 10";
                 break;
             default:
                 Difficulty = 1;
-                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist easy Zahlen von 1 - 10";
+                difficultyText.gameObject.GetComponent<Text>().text = " Difficulty ist Easy Zahlen von 1 - 10";
                 break;
 
         }
