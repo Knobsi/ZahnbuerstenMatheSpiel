@@ -12,7 +12,7 @@ public class Addiren : MonoBehaviour
     public int addirenDifficulty;
     int zahl1;
     int zahl2;
-    bool nedNewNumber;
+
 
     public Button testButton;
     public Button weiterButton;
@@ -38,41 +38,32 @@ public class Addiren : MonoBehaviour
 
     int lvlIsFinish;
 
+    double maxValue;
+
 
     private void Awake()
     {
+        //Prüft ob das Level beendet ist und setzt dan die entsprechenden werte (siehe wiki)
+
         lvlIsFinish = PlayerPrefs.GetInt("lvlIsFinishMerkur");
 
-        if (levelfinish == 4 || lvlIsFinish == 1)
+        if (levelfinish >= 4 || lvlIsFinish == 1)
         {
             zahnbürste.SetActive(true);
             lamp.SetActive(true);
+            planetClean.SetActive(true);
+            planetDirty.SetActive(false);
             PlayerPrefs.SetInt("merkurSauber", 1);
             PlayerPrefs.SetInt("lvlIsFinishMerkur", 1);
             PlayerPrefs.Save();
-            planetClean.SetActive(true);
-            planetDirty.SetActive(false);
 
         }
-        else
-        {
-            zahnbürste.SetActive(false);
-            planetDirty.SetActive(true);
-            planetClean.SetActive(false);
-            PlayerPrefs.SetInt("merkurSauber", 0);
-
-        }
-
-        
-        
-
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Setzt den startwert
-        nedNewNumber = true;
+        //Vordert die erste Nummer
+        NewNumbers();
 
         //Checkt das ergebniss
         Button btn = testButton.GetComponent<Button>();
@@ -85,20 +76,11 @@ public class Addiren : MonoBehaviour
         //Checkt die Schwierigkeit
         addirenDifficulty = PlayerPrefs.GetInt("Difficulty");
 
-       
-
-       
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Wen eine neue nummer benötight wird
-        if(nedNewNumber == true)
-        {
-            NewNumbers();
-        }
+
         //Zurück zum Menü
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -106,101 +88,103 @@ public class Addiren : MonoBehaviour
             SceneManager.LoadScene("Hauptmenü");
 
         }
-        //Zeigt das das level geschaft ist
-        if (levelfinish == 4 || lvlIsFinish == 1)
+
+        //Prüft ob das Level geschaft ist und setzt dan die entsprechenden werte (siehe wiki)
+        lvlIsFinish = PlayerPrefs.GetInt("lvlIsFinishMerkur");
+
+        if (levelfinish >= 4 || lvlIsFinish == 1)
         {
             zahnbürste.SetActive(true);
             lamp.SetActive(true);
-            PlayerPrefs.SetInt("merkurSauber", 1);
-            PlayerPrefs.SetInt("lvlIsFinishMerkur",1);
-            PlayerPrefs.Save();
             planetClean.SetActive(true);
             planetDirty.SetActive(false);
-            
-        }
-        else
-        {
-            zahnbürste.SetActive(false);
-            planetDirty.SetActive(true);
-            planetClean.SetActive(false);
-            PlayerPrefs.SetInt("merkurSauber", 0);
-            PlayerPrefs.SetInt("lvlIsFinishMerkur", 0);
+            PlayerPrefs.SetInt("merkurSauber", 1);
+            PlayerPrefs.SetInt("lvlIsFinishMerkur", 1);
+            PlayerPrefs.Save();
 
         }
         
-        if (lvlIsFinish == 1)
+        //Steuert die Bakterienanzahl
+        switch(bakterienzahl)
         {
-            bakterie1.SetActive(false);
-            bakterie2.SetActive(false);
-            bakterie3.SetActive(false);
-            bakterie4.SetActive(false);
-        }
-        else
-        {
-            switch (bakterienzahl)
-            {
-                case 0:
-                    bakterie1.SetActive(false);
-                    bakterie2.SetActive(false);
-                    bakterie3.SetActive(false);
-                    bakterie4.SetActive(false);
-                    break;
-                case 1:
-                    bakterie1.SetActive(true);
-                    bakterie2.SetActive(false);
-                    bakterie3.SetActive(false);
-                    bakterie4.SetActive(false);
-                    break;
-                case 2:
-                    bakterie1.SetActive(true);
-                    bakterie2.SetActive(true);
-                    bakterie3.SetActive(false);
-                    bakterie4.SetActive(false);
-                    break;
-                case 3:
-                    bakterie1.SetActive(true);
-                    bakterie2.SetActive(true);
-                    bakterie3.SetActive(true);
-                    bakterie4.SetActive(false);
-                    break;
-                case 4:
-                    bakterie1.SetActive(true);
-                    bakterie2.SetActive(true);
-                    bakterie3.SetActive(true);
-                    bakterie4.SetActive(true);
-                    break;
-            }
+
+            case 0:
+                bakterie1.SetActive(false);
+                bakterie2.SetActive(false);
+                bakterie3.SetActive(false);
+                bakterie4.SetActive(false);
+                break;
+            case 1:
+                bakterie1.SetActive(true);
+                bakterie2.SetActive(false);
+                bakterie3.SetActive(false);
+                bakterie4.SetActive(false);
+                break;
+            case 2:
+                bakterie1.SetActive(true);
+                bakterie2.SetActive(true);
+                bakterie3.SetActive(false);
+                bakterie4.SetActive(false);
+                break;
+            case 3:
+                bakterie1.SetActive(true);
+                bakterie2.SetActive(true);
+                bakterie3.SetActive(true);
+                bakterie4.SetActive(false);
+                break;
+            case 4:
+                bakterie1.SetActive(true);
+                bakterie2.SetActive(true);
+                bakterie3.SetActive(true);
+                bakterie4.SetActive(true);
+                break;
+
         }
     }
 
+    //Vordert eine neue nummer anhand der schwierigkeit
     void NewNumbers()
-    {
-        //Vordert eine neue nummer anhand der schwierigkeit
-        nedNewNumber = false;
+    { 
 
         switch (addirenDifficulty)
         {
             case 1:
                 zahl1 = UnityEngine.Random.Range(1, 11);
                 zahl2 = UnityEngine.Random.Range(1, 11);
+                maxValue = 10;
                 break;
 
             case 2:
                 zahl1 = UnityEngine.Random.Range(1, 51);
                 zahl2 = UnityEngine.Random.Range(1, 51);
+                maxValue = 50;
                 break;
 
             case 3:
                 zahl1 = UnityEngine.Random.Range(1, 101);
                 zahl2 = UnityEngine.Random.Range(1, 101);
+                maxValue = 100;
                 break;
 
             case 4:
                 zahl1 = UnityEngine.Random.Range(1, 1001);
                 zahl2 = UnityEngine.Random.Range(1, 1001);
+                maxValue = 1000;
+                break;
+            default:
+                zahl1 = UnityEngine.Random.Range(1, 11);
+                zahl2 = UnityEngine.Random.Range(1, 11);
+                maxValue = 10;
                 break;
 
-                
+
+        }
+        //Prüft ob das Ergebnis im rahmen liegt
+        if(zahl1 + zahl2 > maxValue)
+        {
+
+            NewNumbers();
+
         }
         //Gibt die nummer in den Textzeilen aus
         string zahl1Text = Convert.ToString(zahl1);
@@ -214,8 +198,8 @@ public class Addiren : MonoBehaviour
 
     void CheckSumme()
     {
-        //Rechnet den Betrag aus
-         int summe = zahl1 + zahl2;
+       //Rechnet den Betrag aus
+        int summe = zahl1 + zahl2;
 
         string text = inputText.gameObject.GetComponent<InputField>().text;
         int summe1 = Convert.ToInt32(text);
@@ -247,10 +231,11 @@ public class Addiren : MonoBehaviour
            
     }
 
+    //Checkt ob die benötigte anzahl an Aufgaben gelöst wurde und Begibt sich dan ins Hauptmenü zurück
     void CheckEnd()
     {
 
-        if(levelfinish == 4 || lvlIsFinish == 1)
+        if(levelfinish >= 4 || lvlIsFinish == 1)
         {
 
             SceneManager.LoadScene("Hauptmenü");

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class TextManager : MonoBehaviour
     public GameObject gameUI;
 
     public int bereitsAbgespielt;
+
+    public Button next;
+
+    public bool firstText;
+    public bool secondText;
+    public bool thirtText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,33 +52,47 @@ public class TextManager : MonoBehaviour
 
         if(bereitsAbgespielt == 0)
         {
-            StartCoroutine(TextSwitch());
+            gameUI.gameObject.SetActive(false);
+            text1.gameObject.SetActive(true);
+            firstText = true;
         }
         else
         {
             gameUI.gameObject.SetActive(true);
         }
+
+        Button btn = next.GetComponent<Button>();
+        btn.onClick.AddListener(NextText);
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void NextText()
     {
-        
+        if (thirtText == true)
+        {
+            thirtText = false;
+            text3.gameObject.SetActive(false);
+            gameUI.gameObject.SetActive(true);
+
+        }
+        if (secondText == true)
+        {
+            secondText = false;
+            text2.gameObject.SetActive(false);
+            text3.gameObject.SetActive(true);
+            thirtText = true;
+
+        }
+        if (firstText == true)
+        {
+            firstText = false;
+            text1.gameObject.SetActive(false);
+            text2.gameObject.SetActive(true);
+            secondText = true;
+        }
+
     }
 
-    IEnumerator TextSwitch()
-    {
-        gameUI.gameObject.SetActive(false);
-        text1.gameObject.SetActive(true);
-        yield return new WaitForSeconds(8);
-        text1.gameObject.SetActive(false);
-        text2.gameObject.SetActive(true);
-        yield return new WaitForSeconds(8);
-        text2.gameObject.SetActive(false);
-        text3.gameObject.SetActive(true);
-        yield return new WaitForSeconds(8);
-        text3.gameObject.SetActive(false);
-        gameUI.gameObject.SetActive(true);
-
-    }
 }
